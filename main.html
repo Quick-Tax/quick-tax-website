@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Tax - Professional Accounting & Taxation Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #f8fafc;
+      --accent: #06b6d4;
+      --whatsapp: #25D366;
+      --whatsapp-dark: #1DA851;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --white: #ffffff;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --success: #10b981;
+      --error: #ef4444;
+      --warning: #f59e0b;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 20px 50px -12px rgba(0, 0, 0, 0.15);
+      --gradient: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(15px);
+      z-index: 1000;
+      padding: 1rem 0;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    nav.scrolled {
+      box-shadow: var(--shadow);
+      background: rgba(255, 255, 255, 0.98);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo:hover {
+      color: var(--primary-dark);
+      transform: scale(1.05);
+    }
+
+    .logo i {
+      font-size: 1.8rem;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+      background: var(--gray-100);
+    }
+
+    .nav-links a:hover::before {
+      width: 80%;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .mobile-menu span {
+      width: 25px;
+      height: 3px;
+      background: var(--text);
+      margin: 3px 0;
+      transition: 0.3s;
+      border-radius: 2px;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: var(--gradient);
+      color: var(--white);
+      padding: 140px 2rem 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="white" stop-opacity="0.1"/><stop offset="100%" stop-color="white" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="300" r="100" fill="url(%23a)"/><circle cx="800" cy="200" r="150" fill="url(%23a)"/><circle cx="600" cy="700" r="120" fill="url(%23a)"/></svg>');
+      animation: float 20s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      animation: slideUp 1s ease-out;
+      background: linear-gradient(45deg, #ffffff, #e2e8f0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.95;
+      animation: slideUp 1s ease-out 0.3s both;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: slideUp 1s ease-out 0.6s both;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--white);
+      color: var(--primary);
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow);
+      border: 2px solid transparent;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .cta-button.secondary {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid var(--white);
+    }
+
+    .cta-button.secondary:hover {
+      background: var(--white);
+      color: var(--primary);
+    }
+
+    .cta-button.whatsapp {
+      background: var(--whatsapp);
+      color: var(--white);
+    }
+
+    .cta-button.whatsapp:hover {
+      background: var(--whatsapp-dark);
+    }
+
+    /* WhatsApp Floating Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: var(--whatsapp);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 1.5rem;
+      text-decoration: none;
+      box-shadow: var(--shadow-lg);
+      z-index: 1000;
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      background: var(--whatsapp-dark);
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+
+    /* Section Styles */
+    section {
+      padding: 100px 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      width: 60px;
+      height: 4px;
+      background: var(--gradient);
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    .section-header p {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .card {
+      background: var(--white);
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      transition: all 0.4s ease;
+      border: 1px solid var(--gray-200);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .card p {
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* Services Section */
+    .services {
+      background: var(--secondary);
+    }
+
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--gradient);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      color: var(--white);
+      font-size: 1.8rem;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover .service-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    /* Stats Section */
+    .stats {
+      background: var(--text);
+      color: var(--white);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stats::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--gradient);
+      opacity: 0.1;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .stat-item {
+      padding: 2rem;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .stat-item:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .stat-item h3 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+
+    .stat-item p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    /* Contact Section */
+    .contact {
+      background: var(--gray-100);
+    }
+
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    .contact-info p {
+      margin-bottom: 2rem;
+      color: var(--text-light);
+      font-size: 1.1rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .contact-item:hover {
+      transform: translateX(5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .contact-item .icon {
+      background: var(--gradient);
+      color: var(--white);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .contact-item a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-item a:hover {
+      color: var(--primary-dark);
+    }
+
+    .contact-form {
+      background: var(--white);
+      padding: 3rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .contact-form h3 {
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      color: var(--text);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid var(--gray-200);
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: var(--white);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .form-group .error {
+      border-color: var(--error);
+    }
+
+    .form-group .success {
+      border-color: var(--success);
+    }
+
+    .form-validation {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      border-radius: 4px;
+      display: none;
+    }
+
+    .form-validation.error {
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--error);
+      display: block;
+    }
+
+    .form-validation.success {
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--success);
+      display: block;
+    }
+
+    .submit-btn {
+      background: var(--gradient);
+      color: var(--white);
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .submit-btn .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid transparent;
+      border-top: 2px solid var(--white);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      display: none;
+    }
+
+    .submit-btn.loading .spinner {
+      display: block;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Footer */
+    footer {
+      background: var(--text);
+      color: var(--white);
+      padding: 4rem 2rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--gradient);
+      opacity: 0.05;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-section h3 {
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      font-size: 1.3rem;
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      line-height: 1.7;
+      transition: all 0.3s ease;
+    }
+
+    .footer-section a:hover {
+      color: var(--white);
+      transform: translateX(5px);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 2rem;
+      opacity: 0.8;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Notification */
+    .notification {
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      background: var(--success);
+      color: var(--white);
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      box-shadow: var(--shadow-lg);
+      z-index: 1001;
+      transform: translateX(400px);
+      transition: all 0.3s ease;
+    }
+
+    .notification.show {
+      transform: translateX(0);
+    }
+
+    .notification.error {
+      background: var(--error);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu {
+        display: flex;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .section-header h2 {
+        font-size: 2rem;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+      }
+    }
+
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Loading Animation */
+    .loading {
+      opacity: 0;
+      animation: fadeIn 1s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Quick Action Buttons */
+    .quick-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .quick-action {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      background: var(--white);
+      color: var(--text);
+      text-decoration: none;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .quick-action:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+      color: var(--primary);
+    }
+
+    .quick-action i {
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Notification -->
+  <div id="notification" class="notification">
+    <span id="notification-text"></span>
+  </div>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <i class="fas fa-calculator"></i>
+        Quick Tax
+      </a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/917450069060?text=Hi! I need help with tax and accounting services." class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Professional Tax & Accounting Solutions</h1>
+      <p>Comprehensive financial services for individuals, businesses, and NRIs. Expert guidance for all your taxation, compliance, and accounting needs with 100% digital processes.</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="cta-button">
+          <i class="fas fa-rocket"></i>
+          Get Started Today
+        </a>
+        <a href="https://wa.me/917450069060?text=Hi! I need help with tax and accounting services." class="cta-button whatsapp" target="_blank">
+          <i class="fab fa-whatsapp"></i>
+          Chat on WhatsApp
+        </a>
+        <a href="mailto:quicktax@outlook.in?subject=Tax Services Inquiry" class="cta-button secondary">
+          <i class="fas fa-envelope"></i>
+          Email Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="loading">
+    <div class="section-header">
+      <h2>About Quick Tax</h2>
+      <p>We are a modern financial consultancy firm dedicated to providing transparent, affordable, and professional services for all your taxation and accounting requirements.</p>
+    </div>
+    <div class="cards-grid">
+      <div class="card">
+        <h3><i class="fas fa-users"></i> Expert Team</h3>
+        <p>Our qualified Chartered Accountants and tax professionals bring years of experience to handle complex financial matters with precision and care.</p>
+      </div>
+      <div class="card">
+        <h3><i class="fas fa-laptop"></i> Digital First</h3>
+        <p>100% paperless processes with secure digital document handling, online consultations, and real-time progress tracking for your convenience.</p>
+      </div>
+      <div class="card">
+        <h3><i class="fas fa-shield-alt"></i> Comprehensive Services</h3>
+        <p>From individual tax filing to business compliance, we offer complete financial solutions under one roof with guaranteed accuracy.</p>
+      </div>
+    </div>
+    <div class="quick-actions">
+      <a href="https://wa.me/917450069060?text=I want to know more about your services" class="quick-action">
+        <i class="fab fa-whatsapp"></i>
+        Quick Chat
+      </a>
+      <a href="mailto:quicktax@outlook.in?subject=Service Inquiry" class="quick-action">
+        <i class="fas fa-envelope"></i>
+        Email Query
+      </a>
+      <a href="tel:+917450069060" class="quick-action">
+        <i class="fas fa-phone"></i>
+        Call Now
+      </a>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="services loading">
+    <div class="section-header">
+      <h2>Our Services</h2>
+      <p>Complete range of taxation, accounting, and compliance services tailored to your needs with expert guidance and timely delivery.</p>
+    </div>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="service-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <h3>Accounting & Bookkeeping</h3>
+        <p>Professional bookkeeping services with accurate financial records, monthly reporting, and financial analysis for businesses of all sizes.</p>
+      </div>
+      <div class="card">
+        <div class="service-icon">
+          <i class="fas fa-file-invoice-dollar"></i>
+        </div>
+        <h3>Income Tax Filing</h3>
+        <p>Expert tax return preparation and filing for individuals, businesses, and NRIs with maximum deductions and 100% compliance guarantee.</p>
+      </div>
+      <div class="card">
+        <div class="service-icon">
+          <i class="fas fa-receipt"></i>
+        </div>
+        <h3>GST Services</h3>
+        <p>Complete GST registration, filing, and compliance management with timely returns, input tax credit optimization, and advisory services.</p>
+      </div>
+      <div class="card">
+        <div class="service-icon">
+          <i class="fas fa-building"></i>
+        </div>
+        <h3>Business Registration</h3>
+        <p>End-to-end business setup including company registration, licensing, startup compliance support, and ongoing corporate governance.</p>
+      </div>
+      <div class="card">
+        <div class="service-icon">
+          <i class="fas fa-globe"></i>
+        </div>
+        <h3>NRI Tax Services</h3>
+        <p>Specialized services for Non-Resident Indians including DTAA benefits, foreign income reporting, FEMA compliance, and investment planning.</p>
+      </div>
+      <div class="card">
+        <div class="service-icon">
+          <i class="fas fa-piggy-bank"></i>
+        </div>
+        <h3>Tax Planning</h3>
+        <p>Strategic tax planning and investment advisory to optimize your tax liability, maximize savings, and ensure long-term financial growth.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats loading">
+    <div class="section-header">
+      <h2>Our Track Record</h2>
+      <p>Numbers that speak for our expertise and client satisfaction</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-item">
+        <h3>500+</h3>
+        <p>Happy Clients</p>
+      </div>
+      <div class="stat-item">
+        <h3>1000+</h3>
+        <p>Tax Returns Filed</p>
+      </div>
+      <div class="stat-item">
+        <h3>98%</h3>
+        <p>Client Satisfaction</p>
+      </div>
+      <div class="stat-item">
+        <h3>5+</h3>
+        <p>Years Experience</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact loading">
+    <div class="section-header">
+      <h2>Get In Touch</h2>
+      <p>Ready to simplify your tax and accounting needs? Contact our experts today for personalized consultation</p>
+    </div>
+    <div class="contact-content">
+      <div class="contact-info">
+        <h3>Contact Information</h3>
+        <p>Reach out to us for personalized consultation and expert guidance on all your financial matters. We're here to help you succeed!</p>
+        
+        <div class="contact-item">
+          <div class="icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div>
+            <strong>Email:</strong><br>
+            <a href="mailto:quicktax@outlook.in?subject=Tax Services Inquiry">quicktax@outlook.in</a>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div>
+            <strong>Phone:</strong><br>
+            <a href="tel:+917450069060">+91 7450069060</a>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="icon">
+            <i class="fab fa-whatsapp"></i>
+          </div>
+          <div>
+            <strong>WhatsApp:</strong><br>
+            <a href="https://wa.me/917450069060?text=Hi! I need help with tax and accounting services." target="_blank">Chat with us instantly</a>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div>
+            <strong>Business Hours:</strong><br>
+            Mon - Sat: 9:00 AM - 6:00 PM<br>
+            <small>Emergency support available 24/7</small>
+          </div>
+        </div>
+      </div>
+      
+      <div class="contact-form">
+        <h3>Send us a Message</h3>
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" required>
+            <div class="form-validation" id="nameValidation"></div>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required>
+            <div class="form-validation" id="emailValidation"></div>
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+91 XXXXXXXXXX">
+            <div class="form-validation" id="phoneValidation"></div>
+          </div>
+          
+          <div class="form-group">
+            <label for="service">Service Required *</label>
+            <select id="service" name="service" required>
+              <option value="">Select a service</option>
+              <option value="tax-filing">Income Tax Filing</option>
+              <option value="gst-services">GST Services</option>
+              <option value="business-registration">Business Registration</option>
+              <option value="accounting">Accounting & Bookkeeping</option>
+              <option value="nri-services">NRI Tax Services</option>
+              <option value="tax-planning">Tax Planning</option>
+              <option value="other">Other</option>
+            </select>
+            <div class="form-validation" id="serviceValidation"></div>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" rows="4" placeholder="Tell us about your requirements in detail..." required></textarea>
+            <div class="form-validation" id="messageValidation"></div>
+          </div>
+          
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <div class="spinner"></div>
+            <i class="fas fa-paper-plane"></i>
+            Send Message
+          </button>
+        </form>
+        
+        <div class="quick-actions" style="margin-top: 2rem;">
+          <a href="https://wa.me/917450069060?text=Hi! I need urgent help with tax services." class="quick-action">
+            <i class="fab fa-whatsapp"></i>
+            Urgent Help
+          </a>
+          <a href="mailto:quicktax@outlook.in?subject=Quick Question" class="quick-action">
+            <i class="fas fa-question-circle"></i>
+            Quick Question
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Quick Tax</h3>
+        <p>Your trusted partner for all accounting, taxation, and compliance needs. Professional services with modern digital solutions and expert guidance.</p>
+        <div style="margin-top: 1rem;">
+          <a href="https://wa.me/917450069060" style="margin-right: 1rem; font-size: 1.5rem; color: var(--whatsapp);">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="mailto:quicktax@outlook.in" style="margin-right: 1rem; font-size: 1.5rem; color: var(--primary);">
+            <i class="fas fa-envelope"></i>
+          </a>
+          <a href="tel:+917450069060" style="font-size: 1.5rem; color: var(--accent);">
+            <i class="fas fa-phone"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Quick Services</h3>
+        <p><a href="https://wa.me/917450069060?text=I need help with tax filing">Tax Filing</a></p>
+        <p><a href="https://wa.me/917450069060?text=I need help with GST services">GST Services</a></p>
+        <p><a href="https://wa.me/917450069060?text=I need help with business registration">Business Registration</a></p>
+        <p><a href="https://wa.me/917450069060?text=I need help with NRI services">NRI Services</a></p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Contact Info</h3>
+        <p><i class="fas fa-envelope"></i> quicktax@outlook.in</p>
+        <p><i class="fas fa-phone"></i> +91 7450069060</p>
+        <p><i class="fab fa-whatsapp"></i> WhatsApp Available</p>
+        <p><i class="fas fa-clock"></i> Mon - Sat: 9:00 AM - 6:00 PM</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Quick Tax. All rights reserved. | Professional Tax & Accounting Services | 
+      <a href="https://wa.me/917450069060?text=I need help" style="color: var(--accent);">Get Help on WhatsApp</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Loading animation on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.loading').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+
+    // Form validation functions
+    function validateEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    function validatePhone(phone) {
+      const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+      return phoneRegex.test(phone.replace(/\s/g, ''));
+    }
+
+    function validateName(name) {
+      return name.trim().length >= 2;
+    }
+
+    function showValidation(elementId, message, isValid) {
+      const element = document.getElementById(elementId);
+      const input = document.getElementById(elementId.replace('Validation', ''));
+      
+      element.textContent = message;
+      element.className = `form-validation ${isValid ? 'success' : 'error'}`;
+      input.className = isValid ? 'success' : 'error';
+      
+      setTimeout(() => {
+        if (isValid) {
+          element.style.display = 'none';
+          input.className = '';
+        }
+      }, 3000);
+    }
+
+    function showNotification(message, isSuccess = true) {
+      const notification = document.getElementById('notification');
+      const text = document.getElementById('notification-text');
+      
+      text.textContent = message;
+      notification.className = `notification ${isSuccess ? '' : 'error'}`;
+      notification.classList.add('show');
+      
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 4000);
+    }
+
+    // Real-time form validation
+    document.getElementById('name').addEventListener('input', function() {
+      const name = this.value.trim();
+      if (name.length > 0) {
+        if (validateName(name)) {
+          showValidation('nameValidation', 'Name looks good!', true);
+        } else {
+          showValidation('nameValidation', 'Name must be at least 2 characters long', false);
+        }
+      }
+    });
+
+    document.getElementById('email').addEventListener('input', function() {
+      const email = this.value.trim();
+      if (email.length > 0) {
+        if (validateEmail(email)) {
+          showValidation('emailValidation', 'Valid email address!', true);
+        } else {
+          showValidation('emailValidation', 'Please enter a valid email address', false);
+        }
+      }
+    });
+
+    document.getElementById('phone').addEventListener('input', function() {
+      const phone = this.value.trim();
+      if (phone.length > 0) {
+        if (validatePhone(phone)) {
+          showValidation('phoneValidation', 'Valid phone number!', true);
+        } else {
+          showValidation('phoneValidation', 'Please enter a valid phone number', false);
+        }
+      }
+    });
+
+    // Enhanced form submission
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form data
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData);
+      
+      // Validation
+      let isValid = true;
+      
+      if (!validateName(data.name)) {
+        showValidation('nameValidation', 'Name is required and must be at least 2 characters', false);
+        isValid = false;
+      }
+      
+      if (!validateEmail(data.email)) {
+        showValidation('emailValidation', 'Please enter a valid email address', false);
+        isValid = false;
+      }
+      
+      if (!data.service) {
+        showValidation('serviceValidation', 'Please select a service', false);
+        isValid = false;
+      }
+      
+      if (!data.message.trim()) {
+        showValidation('messageValidation', 'Message is required', false);
+        isValid = false;
+      }
+      
+      if (data.phone && !validatePhone(data.phone)) {
+        showValidation('phoneValidation', 'Please enter a valid phone number', false);
+        isValid = false;
+      }
+      
+      if (!isValid) {
+        return;
+      }
+      
+      // Simulate form submission
+      const submitBtn = document.getElementById('submitBtn');
+      const originalText = submitBtn.innerHTML;
+      
+      submitBtn.classList.add('loading');
+      submitBtn.innerHTML = '<div class="spinner"></div>Sending...';
+      submitBtn.disabled = true;
+      
+      // Create WhatsApp message
+      const whatsappMessage = `Hi! I'm ${data.name}. I need help with ${data.service}. 
+      
+Email: ${data.email}
+${data.phone ? `Phone: ${data.phone}` : ''}
+
+Message: ${data.message}`;
+      
+      // Create email message
+      const emailSubject = `Tax Services Inquiry - ${data.service}`;
+      const emailBody = `Name: ${data.name}
+Email: ${data.email}
+${data.phone ? `Phone: ${data.phone}` : ''}
+Service: ${data.service}
+
+Message:
+${data.message}`;
+      
+      setTimeout(() => {
+        // Show success message
+        showNotification('Message sent successfully! We will get back to you soon.', true);
+        
+        // Reset form
+        this.reset();
+        
+        // Reset button
+        submitBtn.classList.remove('loading');
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        
+        // Clear validations
+        document.querySelectorAll('.form-validation').forEach(el => {
+          el.style.display = 'none';
+        });
+        document.querySelectorAll('input, select, textarea').forEach(el => {
+          el.className = '';
+        });
+        
+        // Open WhatsApp with pre-filled message
+        const whatsappUrl = `https://wa.me/917450069060?text=${encodeURIComponent(whatsappMessage)}`;
+        window.open(whatsappUrl, '_blank');
+        
+        // Also prepare email
+        const emailUrl = `mailto:quicktax@outlook.in?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+        setTimeout(() => {
+          window.location.href = emailUrl;
+        }, 2000);
+        
+      }, 2000);
+    });
+
+    // Counter animation for stats
+    function animateCounter(element, target, duration = 2000) {
+      const start = 0;
+      const increment = target / (duration / 16);
+      let current = start;
+      
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        
+        let displayValue = Math.floor(current);
+        if (element.textContent.includes('%')) {
+          element.textContent = displayValue + '%';
+        } else {
+          element.textContent = displayValue + '+';
+        }
+      }, 16);
+    }
+
+    // Animate counters when stats section comes into view
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counters = entry.target.querySelectorAll('.stat-item h3');
+          counters.forEach(counter => {
+            const target = parseInt(counter.textContent);
+            animateCounter(counter, target);
+          });
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const statsSection = document.querySelector('.stats');
+    if (statsSection) {
+      statsObserver.observe(statsSection);
+    }
+
+    // Quick contact functions
+    function openWhatsApp(message = "Hi! I need help with tax and accounting services.") {
+      const url = `https://wa.me/917450069060?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    }
+
+    function openEmail(subject = "Tax Services Inquiry") {
+      const url = `mailto:quicktax@outlook.in?subject=${encodeURIComponent(subject)}`;
+      window.location.href = url;
+    }
+
+    // Add click tracking for better user experience
+    document.querySelectorAll('a[href^="https://wa.me"]').forEach(link => {
+      link.addEventListener('click', function() {
+        setTimeout(() => {
+          showNotification('Opening WhatsApp... You can also call us at +91 7450069060', true);
+        }, 1000);
+      });
+    });
+
+    document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+      link.addEventListener('click', function() {
+        setTimeout(() => {
+          showNotification('Opening email client... You can also WhatsApp us for instant response!', true);
+        }, 1000);
+      });
+    });
+
+    // Add mobile menu functionality
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (mobileMenu) {
+      mobileMenu.addEventListener('click', function() {
+        navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+      });
+    }
+
+    // Welcome message on page load
+    window.addEventListener('load', function() {
+      setTimeout(() => {
+        showNotification('Welcome to Quick Tax! Need immediate help? Click the WhatsApp button below.', true);
+      }, 3000);
+    });
+
+    // Add service-specific WhatsApp links
+    document.querySelectorAll('.service-icon').forEach((icon, index) => {
+      const services = [
+        'accounting and bookkeeping',
+        'income tax filing',
+        'GST services',
+        'business registration',
+        'NRI tax services',
+        'tax planning'
+      ];
+      
+      icon.addEventListener('click', function() {
+        const message = `Hi! I'm interested in your ${services[index]} services. Can you help me?`;
+        openWhatsApp(message);
+      });
+      
+      icon.style.cursor = 'pointer';
+      icon.title = `Click to chat about ${services[index]}`;
+    });
+  </script>
+</body>
+</html>
