@@ -1479,5 +1479,129 @@ ${data.message}`;
       icon.title = `Click to chat about ${services[index]}`;
     });
   </script>
+
+
+<section id="tax-calculator" class="services loading" style="background: var(--secondary); padding: 100px 2rem;">
+  <div class="section-header">
+    <h2>Tax Calculator & Filing Guidelines</h2>
+    <p>Compare old vs new regimes and check your ITR filing requirement instantly.</p>
+  </div>
+  <div class="cards-grid">
+    <div class="card" style="grid-column: span 2;">
+      <h3 style="margin-bottom: 1rem;">Income Details</h3>
+      <div class="form-group"><label>Income from Salary:</label><input type="number" id="salary" placeholder="e.g. 700000"></div>
+      <div class="form-group"><label>Income from House Property:</label><input type="number" id="house" placeholder="e.g. 100000"></div>
+      <div class="form-group"><label>Business/Profession Income:</label><input type="number" id="business" placeholder="e.g. 200000"></div>
+      <div class="form-group"><label>Capital Gains:</label><input type="number" id="capital" placeholder="e.g. 50000"></div>
+      <div class="form-group"><label>Other Sources:</label><input type="number" id="other" placeholder="e.g. 30000"></div>
+      <div class="form-group"><label>Deductions (Old Regime only):</label><input type="number" id="deductions" placeholder="e.g. 150000"></div>
+    </div>
+
+    <div class="card" style="grid-column: span 2;">
+      <h3 style="margin-bottom: 1rem;">Check for Mandatory Filing</h3>
+      <div class="form-group"><label>Cash Deposited in Bank:</label><input type="number" id="cashDeposit" placeholder="e.g. 1200000"></div>
+      <div class="form-group"><label>Electricity Bill Paid:</label><input type="number" id="electricity" placeholder="e.g. 120000"></div>
+      <div class="form-group"><label>Foreign Travel Expenses:</label><input type="number" id="travel" placeholder="e.g. 250000"></div>
+      <button onclick="calculateTax()" class="submit-btn" style="margin-top: 20px;">
+        <i class="fas fa-calculator"></i> Compare & Check Filing
+      </button>
+    </div>
+
+    <div class="card" style="grid-column: span 2;" id="result"></div>
+
+    <div class="card" style="grid-column: span 2;">
+      <h3>Guidelines Summary</h3>
+      <ul style="padding-left: 1.2rem; line-height: 1.7;">
+        <li><b>Accounting:</b> Maintain books if turnover > ₹25L (professionals) or ₹1Cr (business).</li>
+        <li><b>GST:</b> Register if turnover > ₹20/40L. File GSTR-1 & 3B regularly.</li>
+        <li><b>Indian Tax:</b> ITR mandatory if income > limit or due to high transactions.</li>
+        <li><b>NRI:</b> Report foreign income, claim DTAA, and disclose foreign assets.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script>
+function calculateTax() {
+      const salary = parseFloat(document.getElementById("salary").value) || 0;
+      const house = parseFloat(document.getElementById("house").value) || 0;
+      const business = parseFloat(document.getElementById("business").value) || 0;
+      const capital = parseFloat(document.getElementById("capital").value) || 0;
+      const other = parseFloat(document.getElementById("other").value) || 0;
+      const deductions = parseFloat(document.getElementById("deductions").value) || 0;
+
+      const cashDeposit = parseFloat(document.getElementById("cashDeposit").value) || 0;
+      const electricity = parseFloat(document.getElementById("electricity").value) || 0;
+      const travel = parseFloat(document.getElementById("travel").value) || 0;
+
+      const grossIncome = salary + house + business + capital + other;
+
+      // Old Regime
+      const taxableOld = Math.max(0, grossIncome - deductions);
+      let taxOld = getOldRegimeTax(taxableOld);
+
+      // New Regime
+      const taxableNew = grossIncome;
+      let taxNew = getNewRegimeTax(taxableNew);
+
+      const filingMandatory =
+        grossIncome > 250000 ||
+        cashDeposit > 1000000 ||
+        electricity > 100000 ||
+        travel > 200000;
+
+      const resultHTML = `
+        <h3>Tax Comparison</h3>
+        <b>Gross Income:</b> ₹${grossIncome.toLocaleString()}<br>
+        <b>Deductions (Old Regime):</b> ₹${deductions.toLocaleString()}<br><br>
+        <b>Old Regime Tax:</b> ₹${taxOld.toFixed(2)}<br>
+        <b>New Regime Tax:</b> ₹${taxNew.toFixed(2)}<br><br>
+
+        <h3>ITR Filing Required?</h3>
+        ${
+          filingMandatory
+            ? '<span style="color: green;">✅ Yes, ITR filing is mandatory.</span>'
+            : '<span style="color: red;">❌ No, not mandatory based on your inputs.</span>'
+        }
+      `;
+
+      document.getElementById("result").innerHTML = resultHTML;
+    }
+
+    function getOldRegimeTax(income) {
+      let tax = 0;
+      if (income <= 250000) tax = 0;
+      else if (income <= 500000) tax = (income - 250000) * 0.05;
+      else if (income <= 1000000) tax = 12500 + (income - 500000) * 0.20;
+      else tax = 112500 + (income - 1000000) * 0.30;
+      if (income <= 500000) tax = 0; // 87A rebate
+      return tax * 1.04;
+    }
+
+    function getNewRegimeTax(income) {
+      const slabs = [
+        { limit: 300000, rate: 0 },
+        { limit: 600000, rate: 0.05 },
+        { limit: 900000, rate: 0.10 },
+        { limit: 1200000, rate: 0.15 },
+        { limit: 1500000, rate: 0.20 },
+        { limit: Infinity, rate: 0.30 }
+      ];
+      let tax = 0, prev = 0;
+      for (let slab of slabs) {
+        if (income > slab.limit) {
+          tax += (slab.limit - prev) * slab.rate;
+          prev = slab.limit;
+        } else {
+          tax += (income - prev) * slab.rate;
+          break;
+        }
+      }
+      if (income <= 700000) tax = 0; // 87A under New Regime
+      return tax * 1.04;
+    }
+</script>
+
+
 </body>
 </html>
